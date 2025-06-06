@@ -81,27 +81,27 @@ if xls_file:
     	        abonos = ET.Element("{http://www.finagro.com.co/sit}abonos", cifraDeControl=Cantidad_registros)
     	        for index, row in df.iterrows():
                     # Crear el elemento 'abonos'
-        		    abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
-                                    tipoNovedadPago="2",
-                                    codigoMotivoAbono=str(row['MOTIVO_ABONO']),
-                                    destinoAbono=str(row['DESTINO_ABONO']),
-                                    fechaAplicacionPago = str(fecha_novedades_str.strftime('%Y-%m-%d'))
-                                    )
-                    
-	                    informacionObligacion = ET.SubElement(abono, "{http://www.finagro.com.co/sit}informacionObligacion",
-	                                                tipoCarteraId=str(row['TIPO_CARTERA']),
-	                                                codigoIntermediario=str(row['INTERMEDIARIO']),
-	                                                numeroObligacion=str(row['NUMERO_OBLIGACION_AGROS']),
-	                                                tipoMonedaId="1"
-	                                                        ) 
-	                    informacionBeneficiario = ET.SubElement(informacionObligacion, "{http://www.finagro.com.co/sit}informacionBeneficiario",
-	                                        tipoDocumentoId=str(row['TIPO_DOCUMENTO']),
-	                                        numeroDocumento=str(row['NUMERO_DOCUMENTO'])
-	                                        )
-	                    valorAbono = ET.SubElement(abono, "{http://www.finagro.com.co/sit}valorAbono")
-	        	
-	                    valorAbonoCapital = ET.SubElement(valorAbono, "{http://www.finagro.com.co/sit}valorAbonoCapital",{"xmlns": ""})
-	                    valorAbonoCapital.text = str(row['VALOR_CAPITAL_ABONO'])
+		    abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
+			    tipoNovedadPago="2",
+			    codigoMotivoAbono=str(row['MOTIVO_ABONO']),
+			    destinoAbono=str(row['DESTINO_ABONO']),
+			    fechaAplicacionPago = str(fecha_novedades_str.strftime('%Y-%m-%d'))
+			    )
+	    
+		    informacionObligacion = ET.SubElement(abono, "{http://www.finagro.com.co/sit}informacionObligacion",
+						tipoCarteraId=str(row['TIPO_CARTERA']),
+						codigoIntermediario=str(row['INTERMEDIARIO']),
+						numeroObligacion=str(row['NUMERO_OBLIGACION_AGROS']),
+						tipoMonedaId="1"
+							) 
+		    informacionBeneficiario = ET.SubElement(informacionObligacion, "{http://www.finagro.com.co/sit}informacionBeneficiario",
+					tipoDocumentoId=str(row['TIPO_DOCUMENTO']),
+					numeroDocumento=str(row['NUMERO_DOCUMENTO'])
+					)
+		    valorAbono = ET.SubElement(abono, "{http://www.finagro.com.co/sit}valorAbono")
+		
+		    valorAbonoCapital = ET.SubElement(valorAbono, "{http://www.finagro.com.co/sit}valorAbonoCapital",{"xmlns": ""})
+		    valorAbonoCapital.text = str(row['VALOR_CAPITAL_ABONO'])
         	
              
                 # Crear el árbol XML
