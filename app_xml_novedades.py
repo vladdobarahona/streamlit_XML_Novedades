@@ -93,10 +93,11 @@ if xls_file:
         fecha_Desembolso = date(2025, 5, 9) # indicar fecha desembolso
         cod_programa = '126' # indicar código del programa
         cod_intermediario = '203018' # indicar código del intermediario
-        #st.write(f"Tipo plan: {tipo_plan}")
-	tipo_plan = 0 # solo va 1 o cero | # si tipo_plan = 1 entonces bullet sino cuotas capital simétricas
+        tipo_plan = 0 # solo va 1 o cero | # si tipo_plan = 1 entonces bullet sino cuotas capital simétricas
         
-        st.dataframe(df)
+	#st.write(f"Tipo plan: {tipo_plan}")
+	st.dataframe(df)
+	    
         for index, row in df.iterrows():
             # Crear vencimiento final
             fechaFinal = pd.to_datetime(row['Fecha de Suscripción'],format ='%Y-%m-%d') + relativedelta(months=int(row['Plazo'])) 
