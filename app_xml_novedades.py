@@ -310,16 +310,18 @@ if xls_file:
                                                 )
                     
         # Crear el árbol XML
-	def sanitize_element(element):
-	    if element.text is not None and not isinstance(element.text, str):
-	        element.text = str(element.text)
-	    for key, value in element.attrib.items():
-	        if not isinstance(value, str):
-	            element.attrib[key] = str(value)
-	    for child in element:
-	        sanitize_element(child)
-	
-	sanitize_element(obligaciones)
+        
+        def sanitize_element(element):
+            if element.text is not None and not isinstance(element.text, str):
+                element.text = str(element.text)
+            for key, value in element.attrib.items():
+                if not isinstance(value, str):
+                    element.attrib[key] = str(value)
+            for child in element:
+                sanitize_element(child)
+        
+        sanitize_element(obligaciones)
+
 
         tree = ET.ElementTree(obligaciones)
         ET.indent(tree, space="  ", level=0)
