@@ -85,7 +85,7 @@ if xls_file:
         Cantidad_creditos = str(len(df))
 
         # XML generation logic here
-                ET.register_namespace('', "http://www.finagro.com.co/sit")
+        ET.register_namespace('', "http://www.finagro.com.co/sit")
         obligaciones = ET.Element("{http://www.finagro.com.co/sit}obligaciones",
                                     cifraDeControl=Cantidad_creditos,
                                     cifraDeControlValor=Valor_creditos)
