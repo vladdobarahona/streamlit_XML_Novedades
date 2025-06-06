@@ -5,7 +5,7 @@ Created on Tue May 20 14:34:03 2025
 @author: vbarahona
 """
 
-# %%importar librerias
+# importar librerias
 import streamlit as st
 import xml.etree.ElementTree as ET
 from datetime import date
@@ -80,24 +80,25 @@ if xls_file:
         df['Fecha de Ingresos'] = df['Fecha de Ingresos'].dt.strftime('%Y-%m-%d')
         df['Fecha de Activos'] = df['Fecha de Activos'].dt.strftime('%Y-%m-%d')
         df['Fecha de Suscripción'] = df['Fecha de Suscripción'].dt.strftime('%Y-%m-%d')
-
+	
+        st.dataframe(df)
+        
         Valor_creditos = str(sum(df['Capital Total'].astype('float64')))
         Cantidad_creditos = str(len(df))
-
+        
         # XML generation logic here
         ET.register_namespace('', "http://www.finagro.com.co/sit")
         obligaciones = ET.Element("{http://www.finagro.com.co/sit}obligaciones",
                                     cifraDeControl=Cantidad_creditos,
                                     cifraDeControlValor=Valor_creditos)
-        fecha_Desembolso = fecha_Desembolso_str.strftime('%Y-%m-%d')
+        #fecha_Desembolso = fecha_Desembolso_str.strftime('%Y-%m-%d')
         fecha_Desembolso = date(2025, 5, 9) # indicar fecha desembolso
         cod_programa = '126' # indicar código del programa
         cod_intermediario = '203018' # indicar código del intermediario
         tipo_plan = 0 # solo va 1 o cero | # si tipo_plan = 1 entonces bullet sino cuotas capital simétricas
         
-	#st.write(f"Tipo plan: {tipo_plan}")
-	st.dataframe(df)
-	    
+        	#st.write(f"Tipo plan: {tipo_plan}")
+        	    
         for index, row in df.iterrows():
             # Crear vencimiento final
             fechaFinal = pd.to_datetime(row['Fecha de Suscripción'],format ='%Y-%m-%d') + relativedelta(months=int(row['Plazo'])) 
