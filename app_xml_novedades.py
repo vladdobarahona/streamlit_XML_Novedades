@@ -311,23 +311,26 @@ if xls_file:
                     
         # Crear el árbol XML
         
-        def sanitize_element(element):
+        def sanitize_element_debug(element, log=[]):
             if element.text is not None and not isinstance(element.text, str):
+                log.append(f"[Texto no válido] Elemento: <{element.tag}> - Valor: {element.text} - Tipo: {type(element.text)}")
                 element.text = str(element.text)
             for key, value in element.attrib.items():
                 if not isinstance(value, str):
+                    log.append(f"[Atributo no válido] Elemento: <{element.tag}> - Atributo: {key} - Valor: {value} - Tipo: {type(value)}")
                     element.attrib[key] = str(value)
             for child in element:
-                sanitize_element(child)
+                sanitize_element_debug(child, log)
+            return log
+
         
-        sanitize_element(obligaciones)
-	log = sanitize_element_debug(obligaciones)
-	if log:
-	    st.subheader("🔍 Valores corregidos en el XML")
-	    for entry in log:
-	        st.text(entry)
-	else:
-	    st.success("✅ Todos los valores del XML ya eran válidos.")
+        log = sanitize_element_debug(obligaciones)
+        if log:
+            st.subheader("🔍 Valores corregidos en el XML")
+            for entry in log:
+                st.text(entry)
+        else:
+            st.success("✅ Todos los valores del XML ya eran válidos.")
 
 
         tree = ET.ElementTree(obligaciones)
