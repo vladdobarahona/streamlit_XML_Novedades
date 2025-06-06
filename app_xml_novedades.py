@@ -8,10 +8,7 @@ Created on Tue May 20 14:34:03 2025
 # importar librerias
 import streamlit as st
 import xml.etree.ElementTree as ET
-from datetime import date
-from dateutil.relativedelta import relativedelta
 import pandas as pd
-from decimal import Decimal
 import tempfile
 import openpyxl
 
@@ -33,7 +30,6 @@ required_columns = [
 'TIPO_CARTERA',
 'INTERMEDIARIO',
 'NUMERO_OBLIGACION_AGROS',
-
 'TIPO_DOCUMENTO',
 'NUMERO_DOCUMENTO',
 'VALOR_CAPITAL_ABONO'
