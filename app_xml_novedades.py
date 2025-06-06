@@ -321,6 +321,13 @@ if xls_file:
                 sanitize_element(child)
         
         sanitize_element(obligaciones)
+	log = sanitize_element_debug(obligaciones)
+	if log:
+	    st.subheader("🔍 Valores corregidos en el XML")
+	    for entry in log:
+	        st.text(entry)
+	else:
+	    st.success("✅ Todos los valores del XML ya eran válidos.")
 
 
         tree = ET.ElementTree(obligaciones)
