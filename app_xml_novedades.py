@@ -50,15 +50,14 @@ def to_excel(df):
 
 excel_bytes = to_excel(Plantilla_Excel)
 
-# Crear el formulario y botón de descarga
-with st.form("Plantilla Excel"):
-    st.form_submit_button("Preparar descarga")
-    st.download_button(
-        label="📥 Descargar plantilla Excel",
-        data=excel_bytes,
-        file_name="excel_novedades_xml.xlsx",
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+# Botón de descarga directo
+st.download_button(
+    label="📥 Descargar plantilla Excel",
+    data=excel_file,
+    file_name="excel_novedades_xml.xlsx",
+    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+)
+
 
 #icon=":material/download:",
 # Columnas predeterminadas para el archivo Excel
