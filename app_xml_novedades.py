@@ -12,6 +12,8 @@ import pandas as pd
 import tempfile
 import openpyxl
 from datetime import date  # Faltaba importar date
+from io import BytesIO
+
 # Fondo personalizado y fuente
 st.markdown("""
 <style>
