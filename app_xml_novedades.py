@@ -35,7 +35,7 @@ with col2:
         unsafe_allow_html=True
     )
 with st.form("Plantilla Excel"):
-    st.download_button("📥 Descargar plantilla Excel", data=xlxs, file_name="excel_novedades_xml.xlsx",on_click="ignore",mime="text/excel_novedades_xml",icon=":material/download:",)
+    st.download_button("📥 Descargar plantilla Excel", data="excel_novedades_xml.xlsx", file_name="excel_novedades_xml.xlsx",on_click="ignore",mime="text/excel_novedades_xml",icon=":material/download:",)
 
 # Columnas predeterminadas para el archivo Excel
 required_columns = [
