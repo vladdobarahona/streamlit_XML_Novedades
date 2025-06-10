@@ -80,20 +80,7 @@ st.markdown(
 )
 
 # Estilo para personalizar el uploader
-st.markdown("""
-    <style>
-    .stFileUploader > label {
-        font-size: 0px;
-    }
-    .stFileUploader div[role="button"]::before {
-        content: "📂 Arrastra y suelta tu archivo aquí o haz clic para buscar";
-        font-size: 16px;
-        color: #4a4a4a;
-        display: block;
-        margin-bottom: 10px;
-    }
-    </style>
-""", unsafe_allow_html=True)
+st.markdown("### 📂 Sube tu archivo Excel aquí (XLSX o XLS)")
 
 # Cargador de archivos (solo una vez)
 xls_file = st.file_uploader(
