@@ -35,10 +35,29 @@ with col2:
         unsafe_allow_html=True
     )
 
+# Cargar el archivo Excel desde el repositorio local o remoto
 Plantilla_Excel = pd.read_excel("excel_novedades_xml.xlsx", sheet_name='Novedades', engine="openpyxl", dtype=str)
-    
+
+# Convertir el DataFrame a un archivo Excel en memoria
+def to_excel(df):
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='openpyxl') as writer:
+        df.to_excel(writer, index=False, sheet_name='Novedades')
+    processed_data = output.getvalue()
+    return processed_data
+
+excel_bytes = to_excel(Plantilla_Excel)
+
+# Crear el formulario y botón de descarga
 with st.form("Plantilla Excel"):
-    st.download_button("📥 Descargar plantilla Excel", data=Plantilla_Excel, file_name="excel_novedades_xml.xlsx",on_click="ignore",mime=f"text/{Plantilla_Excel}")
+    st.form_submit_button("Preparar descarga")
+    st.download_button(
+        label="📥 Descargar plantilla Excel",
+        data=excel_bytes,
+        file_name="excel_novedades_xml.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
 #icon=":material/download:",
 # Columnas predeterminadas para el archivo Excel
 required_columns = [
