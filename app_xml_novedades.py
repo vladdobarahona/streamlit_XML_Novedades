@@ -96,7 +96,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Cargador de archivos (solo una vez)
-archivo = st.file_uploader(
+xls_file = st.file_uploader(
     label="",
     type=["xlsx", "xls"],
     help="Límite 200MB por archivo • Formatos permitidos: XLSX, XLS"
