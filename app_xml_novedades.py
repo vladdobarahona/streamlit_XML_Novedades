@@ -58,6 +58,7 @@ st.download_button(
     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     icon=":material/download:"
 )
+st.divider()
 
 # Columnas predeterminadas para el archivo Excel
 required_columns = [
