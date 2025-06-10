@@ -74,10 +74,10 @@ required_columns = [
 ]
 
 # Título personalizado
-st.markdown(
-    '<span style="color: rgb(120, 154, 61); font-size: 22px;">Validador de Columnas Requeridas</span>',
-    unsafe_allow_html=True
-)
+#st.markdown(
+#    '<span style="color: rgb(120, 154, 61); font-size: 22px;">Validador de Columnas Requeridas</span>',
+#    unsafe_allow_html=True
+#)
 
 # Estilo para personalizar el uploader
 st.markdown("### 📂 Sube tu archivo Excel aquí (XLSX o XLS)")
