@@ -34,9 +34,12 @@ with col2:
         '<h1 style="color: rgb(120,154,61); font-size: 2.25rem; font-weight: bold;">Convertidor de archivo Excel a XML Novedades</h1>',
         unsafe_allow_html=True
     )
-with st.form("Plantilla Excel"):
-    st.download_button("📥 Descargar plantilla Excel", data="excel_novedades_xml.xlsx", file_name="excel_novedades_xml.xlsx",on_click="ignore",mime="text/excel_novedades_xml",icon=":material/download:",)
 
+Plantilla_Excel = pd.read_excel("excel_novedades_xml.xlsx", sheet_name='Novedades', engine="openpyxl", dtype=str)
+    
+with st.form("Plantilla Excel"):
+    st.download_button("📥 Descargar plantilla Excel", data=Plantilla_Excel, file_name="excel_novedades_xml.xlsx",on_click="ignore",mime=f"text/{Plantilla_Excel}")
+#icon=":material/download:",
 # Columnas predeterminadas para el archivo Excel
 required_columns = [
     'TIPO NOVEDAD',
