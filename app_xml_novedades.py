@@ -73,11 +73,34 @@ required_columns = [
     'VALOR_CAPITAL_ABONO'
 ]
 
+# Título personalizado
 st.markdown(
     '<span style="color: rgb(120, 154, 61); font-size: 22px;">Validador de Columnas Requeridas</span>',
     unsafe_allow_html=True
 )
-xls_file = st.file_uploader("", type=["xlsx", "xls"])
+
+# Estilo para personalizar el uploader
+st.markdown("""
+    <style>
+    .stFileUploader > label {
+        font-size: 0px;
+    }
+    .stFileUploader div[role="button"]::before {
+        content: "📂 Arrastra y suelta tu archivo aquí o haz clic para buscar";
+        font-size: 16px;
+        color: #4a4a4a;
+        display: block;
+        margin-bottom: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# Cargador de archivos (solo una vez)
+archivo = st.file_uploader(
+    label="",
+    type=["xlsx", "xls"],
+    help="Límite 200MB por archivo • Formatos permitidos: XLSX, XLS"
+)
 
 if xls_file:
     df = pd.read_excel(xls_file, engine='openpyxl')
