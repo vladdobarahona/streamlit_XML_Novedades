@@ -19,7 +19,7 @@ with col1:
     st.image('https://www.finagro.com.co/sites/default/files/logo-front-finagro.png', width=200)
 with col2:
     st.markdown(
-        '<h1 style="color: rgb(120,154,61); font-size: 2.25rem; font-weight: bold;">Convertidor de Novedades a partir de un archivo Excel a XML</h1>',
+        '<h1 style="color: rgb(120,154,61); font-size: 2.25rem; font-weight: bold;">Convertidor de archivo Excel a XML Novedades </h1>',
         unsafe_allow_html=True
     )
 
