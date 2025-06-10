@@ -12,7 +12,19 @@ import pandas as pd
 import tempfile
 import openpyxl
 from datetime import date  # Faltaba importar date
-
+# Fondo personalizado y fuente
+st.markdown("""
+<style>
+    body {
+        background-color:rgb(171 , 190 , 76);
+        font-family: 'Handel Gothic', 'Frutiger light - Roman';
+    }
+    .stApp {
+        background-color: rgb(255, 255, 255);
+        font-family: 'Frutiger Bold', sans-serif;
+    }
+</style>
+    """, unsafe_allow_html=True)
 # Logo a la izquierda y título a la derecha
 col1, col2 = st.columns([1, 2])
 with col1:
@@ -22,6 +34,8 @@ with col2:
         '<h1 style="color: rgb(120,154,61); font-size: 2.25rem; font-weight: bold;">Convertidor de archivo Excel a XML Novedades</h1>',
         unsafe_allow_html=True
     )
+with st.form("Plantilla Excel"):
+    st.download_button("📥 Descargar plantilla Excel", data=xlxs, file_name="excel_novedades_xml.xlsx",on_click="ignore",mime="text/excel_novedades_xml",icon=":material/download:",)
 
 # Columnas predeterminadas para el archivo Excel
 required_columns = [
