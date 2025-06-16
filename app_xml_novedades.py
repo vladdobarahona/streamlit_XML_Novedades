@@ -102,7 +102,22 @@ if xls_file:
         df = df.dropna(subset=['NUMERO_OBLIGACION_AGROS'])
 
         st.dataframe(df)
-
+        df = df.dropna(subset=['NUMERO_OBLIGACION_AGROS'])
+        # Lista de columnas a procesar
+        columnas = [
+            'TIPO NOVEDAD',
+            'MOTIVO_ABONO',
+            'DESTINO_ABONO',
+            'TIPO_CARTERA',
+            'INTERMEDIARIO',
+            'NUMERO_OBLIGACION_AGROS',
+            'TIPO_DOCUMENTO',
+            'NUMERO_DOCUMENTO'
+        ]
+        
+        # Conversión a tipo String y limpieza ".0" 
+        for col in columnas:
+            df[col] = df[col].astype(str).str.replace('.0', '', regex=False)
         Valor_creditos = str(sum(df['VALOR_CAPITAL_ABONO'].astype('float64')))
         Cantidad_registros = str(len(df))
 
@@ -125,13 +140,20 @@ if xls_file:
                 abonos = ET.Element("{http://www.finagro.com.co/sit}abonos", cifraDeControl=Cantidad_registros)
 
                 for index, row in df.iterrows():
-                    abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
-                                          tipoNovedadPago="2",
-                                          codigoMotivoAbono=str(row['MOTIVO_ABONO']),
-                                          destinoAbono=str(row['DESTINO_ABONO']),
-                                          fechaAplicacionPago=str(fecha_novedades_str.strftime('%Y-%m-%d'))
+                    if row['TIPO NOVEDAD'] == '1':
+                        abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
+                        tipoNovedadPago="1",
+                        codigoMotivoAbono=str(row['MOTIVO_ABONO']),
+                        destinoAbono=str(row['DESTINO_ABONO']),
+                        fechaAplicacionPago=str(fecha_novedades_str.strftime('%Y-%m-%d'))
                                           )
-
+                    else:
+                        abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
+                        tipoNovedadPago="2",
+                        codigoMotivoAbono=str(row['MOTIVO_ABONO']),
+                        fechaAplicacionPago=str(fecha_novedades_str.strftime('%Y-%m-%d'))
+                                          )
+                    
                     informacionObligacion = ET.SubElement(abono, "{http://www.finagro.com.co/sit}informacionObligacion",
                                                           tipoCarteraId=str(row['TIPO_CARTERA']),
                                                           codigoIntermediario=str(row['INTERMEDIARIO']),
