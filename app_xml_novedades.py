@@ -144,13 +144,14 @@ if xls_file:
                         abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
                         tipoNovedadPago="1",
                         codigoMotivoAbono=str(row['MOTIVO_ABONO']),
-                        destinoAbono=str(row['DESTINO_ABONO']),
+                        #destinoAbono=str(row['DESTINO_ABONO']),
                         fechaAplicacionPago=str(fecha_novedades_str.strftime('%Y-%m-%d'))
                                           )
                     else:
                         abono = ET.SubElement(abonos, "{http://www.finagro.com.co/sit}abono",
                         tipoNovedadPago="2",
                         codigoMotivoAbono=str(row['MOTIVO_ABONO']),
+                        destinoAbono=str(row['DESTINO_ABONO']),
                         fechaAplicacionPago=str(fecha_novedades_str.strftime('%Y-%m-%d'))
                                           )
                     
