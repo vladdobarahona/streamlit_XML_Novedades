@@ -130,6 +130,7 @@ if xls_file:
             st.subheader("Resumen de datos ingresados:")
             st.write(f"Fecha de aplicación novedades: {fecha_novedades_str.strftime('%Y-%m-%d')}")
             st.write(f"Cantidad de registros: {Cantidad_registros}")
+            df['VALOR_CAPITAL_ABONO'] = df['VALOR_CAPITAL_ABONO'].astype(str).str.replace('.0', '', regex=False)
             valor = sum(df['VALOR_CAPITAL_ABONO'].astype('float64'))
             st.markdown(f"<h4 style='color:#789a3d;'>Valor total capital: ${valor:,.2f}</h4>", unsafe_allow_html=True)
 
@@ -194,3 +195,4 @@ if xls_file:
 
             except Exception as e:
                 st.error(f"Ocurrió un error al generar el XML: {e}")
+
