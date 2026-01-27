@@ -3,3 +3,4 @@ streamlit
 python-dateutil
 openpyxl
 altair<5
+imghdr<3.11
